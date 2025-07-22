@@ -25,7 +25,7 @@ function closemenu() {
 // Send Message to google sheet-------------------
 
 document.addEventListener('DOMContentLoaded', function () {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyjiVybQcapcm-tLeqsefbdWCLYBWw6LVcJQ8Fdf-8h1OTaNDoGvC3ihUIgH6oRDWon/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbys9MqSxbPyjWKBN9M1kYUud3vj_EuMfcJrKjiW8ncCSugYtb7kIC3wO9wpJr7N7Csd/exec';
     const form = document.forms['submit-to-google-sheet'];
     let msg = document.getElementById("msg");
 
