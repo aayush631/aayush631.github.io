@@ -15,9 +15,16 @@ body {
 }
 
 #header {
+    padding-top: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100vh; /* Full screen */
+    z-index: 0;
+    background: #000; /* Or whatever hero background you want */
 }
+
 
 .container {
     padding: 10px 10%;
@@ -28,19 +35,45 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
-.ha {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    height: 95%;
+.hero {
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding-top: 100px; /* Space for nav */
+    z-index: 0;
+}
+.hero-text {
+    flex: 1 1 50%;
+    color: white;
+    font-size: clamp(1rem, 2.5vw, 2.2rem);
+}
+.hero-text h1 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: white;
 }
 
+.hero-text p {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+color: white;
+}
+#sidemenu {
+    /* display: flex; */
+    margin-top: 15px;
+    gap: 20px;
+}
+#sidemenu li a {
+    text-decoration: none;
+    color: #fff; /* or your color */
+}
 .logo {
     width: 140px;
+     /* height: 50px; */
 }
 
 nav ul li {
@@ -72,29 +105,27 @@ nav ul li a:hover::after {
 }
 
 .header-text {
-    width: 65%;
-    margin-top: 20%;
-    font-size: 30px;
-}
-
-.imae {
-    width: 35%;
-    height: auto;
+     flex: 1 1 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 130px;
-    animation: imageSlideIn 1.5s ease-in-out;
+}
+
+.imae {
+     flex: 1 1 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .imae img {
-    width: 100%;
-    max-width: 100%;
+ width: 100%;
+    max-width: auto;
     height: auto;
-    border-radius: 15px;
-    transition: transform 0.5s ease;
     object-fit: cover;
+    margin-top: 30%;
 }
+
 
 .header-text h1 {
     font-size: 60px;
@@ -107,8 +138,19 @@ nav ul li a:hover::after {
 
 /* ------------ About Section ---------- */
 #about {
-    padding: 80px 10%;
-    color: #ababab;
+    position: relative;
+    z-index: 1;
+    margin-top: 100vh; /* Push it down below the fixed hero */
+    background-color: #111; /* Optional */
+    padding: 60px 0;
+}
+#services,
+#portfolio,
+#contact {
+    position: relative;
+    z-index: 1;
+    background-color: #111; /* Optional */
+    padding: 60px 0;
 }
 
 .row {
@@ -139,28 +181,31 @@ nav ul li a:hover::after {
 
 .tab-title {
     display: flex;
-    margin: 20px 0 40px;
+    /* margin: 20px 0 40px; */
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }
-
 .tab-links {
-    margin-right: 50px;
-    font-size: 18px;
-    font-weight: 500;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    white-space: nowrap;
+    background-color: #000000;
+    color: white;
     cursor: pointer;
-    position: relative;
+    transition: background 0.3s ease;
+    flex: 1 1 auto;
+    text-align: center;
+    min-width: 120px;
 }
+/* Optional: active state styling */
+.tab-links.active-link {
+    background-color:#ff0000;
+    color: #fff;
+    transition: 1s;
 
-.tab-links::after {
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #ff0000;
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    transition: 0.5s;
 }
 
 .tab-links.active-link::after {
@@ -346,6 +391,9 @@ nav ul li a:hover::after {
     visibility: visible;
 }
 /* Contact Section */
+#contact {
+    padding-bottom: 0;
+}
 .contact-left{
     flex-basis: 35%;
 }
@@ -426,7 +474,6 @@ form .btn2 {
     font-weight: 300;
     margin-top: 20px;
 }
-
 .copyright a {
     color: #fff;
     text-decoration: none;
@@ -445,11 +492,17 @@ nav .fa-solid {
 }
 
 /* Responsive Styles */
-@media only screen and (max-width: 600px) {     
-    .imae {
-        display: none;
-
+@media only screen and (max-width: 600px) { 
+    #header{
+        padding-top: 10px;
     }
+
+    .imae{
+        padding-top: 50px;
+    }    
+.hero-text{
+    margin: 20px;
+}
     #about {
         padding-top: 20px; /* Reduced padding to fit content */
     }
@@ -546,6 +599,9 @@ nav .fa-solid {
 }
 /* Responsive Media Queries */
 @media screen and (max-width: 768px) {
+      #header{
+        padding-top: 10px;
+    }
     .services-list {
         grid-template-columns: 1fr; /* On smaller screens, stack the grid items in a single column */
         grid-gap: 20px;
@@ -569,6 +625,10 @@ nav .fa-solid {
 }
 
 @media screen and (max-width: 480px) {
+      #header{
+        padding-top: 10px;
+    }
+
     .services-list div h2 {
         font-size: 20px; /* Further adjust font sizes for very small screens */
     }
@@ -581,18 +641,76 @@ nav .fa-solid {
         font-size: 10px; /* Adjust link font size */
     }
 }
-/* image */
-@media only screen and (min-width: 1200px) {
-    .imae {
-        width: 35%; /* Adjust width for big screens */
-        margin-bottom: 500px;
-
-    }
-}
 
 /* Media query for screens larger than 1600px (very large screens) */
 @media only screen and (min-width: 1600px) {
+      #header{
+        padding-top: 10px;
+    }
     .imae {
         width: 35%; /* Further adjustment for extra-large screens */
     }
 }
+@media screen and (max-width: 600px) {
+    .tab-links {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+}
+/* Responsive stacking for smaller screens */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-text {
+        flex: 1 1 100%;
+    }
+
+    .imae {
+        flex: 1 1 100%;
+    }
+
+    .imae img {
+        max-width: 70%;
+    }
+}
+@media (max-width: 900px) {
+      #header{
+        padding-top: 10px;
+    }
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 60px 5%;
+    }
+
+    .hero-text, .imae {
+        flex: 1 1 100%;
+    }
+
+    .imae img {
+        max-width: 70%;
+    }
+}
+@media (max-width: 1200px) {
+      #header{
+        padding-top: 10px;
+    }
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 60px 5%;
+    }
+
+    .hero-text, .imae {
+        flex: 1 1 100%;
+    }
+
+    .imae img {
+        max-width: 70%;
+    }
+}
+
+
